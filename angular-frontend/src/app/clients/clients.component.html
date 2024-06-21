@@ -1,0 +1,11 @@
+<div>
+    <h2>Clients</h2>
+    <input [(ngModel)]="searchTerm" (input)="searchClients()" placeholder="Search clients...">
+    <ul>
+      <li *ngFor="let client of filteredClients">
+        {{client.nom}} {{client.prenom}}
+      </li>
+    </ul>
+    
+  </div>
+  

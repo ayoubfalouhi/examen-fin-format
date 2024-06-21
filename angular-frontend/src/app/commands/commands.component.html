@@ -1,0 +1,30 @@
+<div>
+    <h2>Commands</h2>
+    <ul>
+      <li *ngFor="let command of commands" (click)="selectCommand(command)">
+        {{command.dateCMD}} - {{command.client.nom}} {{command.client.prenom}}
+      </li>
+    </ul>
+    <div *ngIf="selectedCommand">
+      <h3>Edit Command</h3>
+      <label>Date: <input [(ngModel)]="selectedCommand.dateCMD" type="date"></label>
+      <label>Client:
+        <select [(ngModel)]="selectedCommand.client.idClient">
+          <option *ngFor="let client of clients" [value]="client.idClient">{{client.nom}} {{client.prenom}}</option>
+        </select>
+      </label>
+      <button (click)="updateCommand(selectedCommand)">Update</button>
+      <button (click)="deleteCommand(selectedCommand.idCMD)">Delete</button>
+    </div>
+    <div>
+      <h3>Add New Command</h3>
+      <label>Date: <input #newDateCMD type="date"></label>
+      <label>Client:
+        <select #newClient>
+          <option *ngFor="let client of clients" [value]="client.idClient">{{client.nom}} {{client.prenom}}</option>
+        </select>
+      </label>
+      <button (click)="addCommand({dateCMD: newDateCMD.value, client: {idClient: newClient.value}})">Add</button>
+    </div>
+  </div>
+  

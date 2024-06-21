@@ -1,0 +1,22 @@
+<div>
+    <h2>Suppliers</h2>
+    <ul>
+      <li *ngFor="let supplier of suppliers" (click)="selectSupplier(supplier)">
+        {{supplier.nom}} {{supplier.prenom}}
+      </li>
+    </ul>
+    <div *ngIf="selectedSupplier">
+      <h3>Edit Supplier</h3>
+      <label>Name: <input [(ngModel)]="selectedSupplier.nom"></label>
+      <label>Prenom: <input [(ngModel)]="selectedSupplier.prenom"></label>
+      <button (click)="updateSupplier(selectedSupplier)">Update</button>
+      <button (click)="deleteSupplier(selectedSupplier.idFour)">Delete</button>
+    </div>
+    <div>
+      <h3>Add New Supplier</h3>
+      <label>Name: <input #newNom></label>
+      <label>Prenom: <input #newPrenom></label>
+      <button (click)="addSupplier({nom: newNom.value, prenom: newPrenom.value})">Add</button>
+    </div>
+  </div>
+  

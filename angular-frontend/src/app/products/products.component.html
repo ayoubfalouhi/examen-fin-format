@@ -1,0 +1,29 @@
+<div>
+    <h2>Products</h2>
+    <ul>
+      <li *ngFor="let product of products" (click)="selectProduct(product)">
+        {{product.nomProd}} - {{product.quantiteStock}} - {{product.prix}}
+      </li>
+    </ul>
+    <div *ngIf="selectedProduct">
+      <h3>Edit Product</h3>
+      <label>Name: <input [(ngModel)]="selectedProduct.nomProd"></label>
+      <label>Quantity: <input [(ngModel)]="selectedProduct.quantiteStock" type="number"></label>
+      <label>Price: <input [(ngModel)]="selectedProduct.prix" type="number"></label>
+      <button (click)="updateProduct(selectedProduct)">Update</button>
+      <button (click)="deleteProduct(selectedProduct.idProd)">Delete</button>
+    </div>
+    <div>
+      <h3>Add New Product</h3>
+      <label>Name: <input #newNomProd></label>
+      <label>Quantity: <input #newQuantiteStock type="number"></label>
+      <label>Price: <input #newPrix type="number"></label>
+      <label>Supplier:
+        <select #newSupplier>
+          <option *ngFor="let supplier of suppliers" [value]="supplier.idFour">{{supplier.nom}}</option>
+        </select>
+      </label>
+      <button (click)="addProduct({nomProd: newNomProd.value, quantiteStock: newQuantiteStock.value, prix: newPrix.value, idFour: newSupplier.value})">Add</button>
+    </div>
+  </div>
+  
